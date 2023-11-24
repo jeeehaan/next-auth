@@ -1,5 +1,6 @@
 import { AuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import GithubCredential from 'next-auth/providers/github';
 
 import prisma from '@/db/utils/prisma';
 
@@ -33,6 +34,10 @@ export const options: AuthOptions = {
 
         return null;
       },
+    }),
+    GithubCredential({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
   callbacks: {},
