@@ -1,7 +1,8 @@
 'use client';
 
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
+import { Login } from '@/components/Auth/Login';
 import { Button } from '@/components/ui/button';
 
 export default function Page() {
@@ -19,9 +20,7 @@ export default function Page() {
           </div>
         </div>
       ) : (
-        <div className="flex justify-end p-8">
-          <Button onClick={() => signIn()}>Login</Button>
-        </div>
+        <Login />
       )}
     </div>
   );
