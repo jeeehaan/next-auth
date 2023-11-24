@@ -40,5 +40,24 @@ export const options: AuthOptions = {
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
-  callbacks: {},
+  callbacks: {
+    signIn: async ({ user }) => {
+      const findUser = await prisma.user.findUnique({
+        where: {
+          email: user.email as string,
+        },
+      });
+
+      if (!findUser) {
+        await prisma.user.create({
+          data: {
+            name: user.name,
+            email: user.email as string,
+            image: user.image,
+          },
+        });
+      }
+      return true;
+    },
+  },
 };

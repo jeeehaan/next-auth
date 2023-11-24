@@ -10,9 +10,18 @@ export default function Page() {
   return (
     <div>
       {session ? (
-        <Button onClick={() => signOut()}>Logout</Button>
+        <div className="flex justify-between p-8">
+          <div>Next-Auth</div>
+          <div className="flex gap-4 items-center">
+            <div>{session.user?.name}</div>
+            <img src={session.user?.image} alt="" width={40} height={40} className="rounded-full" />
+            <Button onClick={() => signOut()}>Logout</Button>
+          </div>
+        </div>
       ) : (
-        <Button onClick={() => signIn()}>Login</Button>
+        <div className="flex justify-end p-8">
+          <Button onClick={() => signIn()}>Login</Button>
+        </div>
       )}
     </div>
   );
