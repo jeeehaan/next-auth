@@ -20,7 +20,17 @@ export const Login = () => {
   };
 
   const handleGithubLogin = () => {
-    signIn('github');
+    signIn('github', {
+      redirect: true,
+      callbackUrl: '/dashboard',
+    });
+  };
+
+  const handleGoogleLogin = () => {
+    signIn('google', {
+      redirect: true,
+      callbackUrl: '/dashboard',
+    });
   };
 
   return (
@@ -30,6 +40,7 @@ export const Login = () => {
         <Input size="md" type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
         <Button onClick={handleCredentialsLogin}>Login</Button>
         <Button onClick={handleGithubLogin} variant="secondary">Continue with Github</Button>
+        <Button onClick={handleGoogleLogin} variant="secondary">Continue with Google</Button>
       </div>
     </main>
   );
